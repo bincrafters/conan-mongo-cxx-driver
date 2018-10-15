@@ -1,45 +1,63 @@
-# conan-mongo-cxx-driver
+[![Download](https://api.bintray.com/packages/bincraters/public-conan/mongo-cxx-driver%3Abincraters/images/download.svg) ](https://bintray.com/bincraters/public-conan/mongo-cxx-driver%3Abincraters/_latestVersion)
+[![Build Status](https://travis-ci.org/bincraters/conan-mongo-cxx-driver.svg?branch=testing%2F3.2.0)](https://travis-ci.org/bincraters/conan-mongo-cxx-driver)
+[![Build status](https://ci.appveyor.com/api/projects/status/github/bincraters/conan-mongo-cxx-driver?branch=testing%2F3.2.0&svg=true)](https://ci.appveyor.com/project/bincraters/conan-mongo-cxx-driver)
 
-## Package Status
+[Conan.io](https://conan.io) package recipe for *mongo-cxx-driver*.
 
-| Bintray | Windows | Linux & macOS |
-|:--------:|:---------:|:-----------------:|
-| [![Download](https://api.bintray.com/packages/bincrafters/public-conan/mongo-cxx-driver%3Abincrafters/images/download.svg)](https://bintray.com/bincrafters/public-conan/mongo-cxx-driver%3Abincrafters/_latestVersion) | ![Build Status](https://img.shields.io/badge/build-nope-red.svg) | [![Build Status](https://travis-ci.org/bincrafters/conan-mongo-cxx-driver.svg)](https://travis-ci.org/bincrafters/conan-mongo-cxx-driver) |
+C++ Driver for MongoDB
 
-## Conan.io Information
+The packages generated with this **conanfile** can be found on [Bintray](https://bintray.com/bincraters/public-conan/mongo-cxx-driver%3Abincraters).
 
-Bincrafters packages can be found in the following public Conan repository:
+## For Users: Use this package
 
-[Bincrafters Public Conan Repository on Bintray](https://bintray.com/bincrafters/public-conan)
+### Basic setup
 
-*Note: You can click the "Set Me Up" button on the Bintray page above for instructions on using packages from this repository.*
+    $ conan install mongo-cxx-driver/3.2.0@bincraters/testing
 
-## Issues
+### Project setup
 
-If you wish to report an issue or make a request for a Bincrafters package, please do so here:
+If you handle multiple dependencies in your project is better to add a *conanfile.txt*
 
-[Bincrafters Community Issues](https://github.com/bincrafters/community/issues)
+    [requires]
+    mongo-cxx-driver/3.2.0@bincraters/testing
 
-## General Information
+    [generators]
+    cmake
 
-This GIT repository is managed by the Bincrafters team and holds files related to Conan.io.  For detailed information about Bincrafters and Conan.io, please visit the following resources:
+Complete the installation of requirements for your project running:
 
-[Bincrafters Wiki - Common README](https://github.com/bincrafters/community/wiki/Common-README.md)
+    $ mkdir build && cd build && conan install ..
 
-[Bincrafters Technical Documentation](http://bincrafters.readthedocs.io/en/latest/)
+Note: It is recommended that you run conan install from a build directory and not the root of the project directory.  This is because conan generates *conanbuildinfo* files specific to a single build configuration which by default comes from an autodetected default profile located in ~/.conan/profiles/default .  If you pass different build configuration options to conan install, it will generate different *conanbuildinfo* files.  Thus, they should not be added to the root of the project, nor committed to git.
 
-[Bincrafters Blog](https://bincrafters.github.io)
+## For Packagers: Publish this Package
 
-## License Information
+The example below shows the commands used to publish to bincraters conan repository. To publish to your own conan respository (for example, after forking this git repository), you will need to change the commands below accordingly.
 
-Bincrafters packages are hosted on [Bintray](https://bintray.com) and contain Open-Source software which is licensed by the software's maintainers and NOT Bincrafters.  For each Open-Source package published by Bincrafters, the packaging process obtains the required license files along with the original source files from the maintainer, and includes these license files in the generated Conan packages.
+## Build and package
 
-The contents of this GIT repository are completely separate from the software being packaged and therefore licensed separately.  The license for all files contained in this GIT repository are defined in the [LICENSE](LICENSE) file in this repository.  The licenses included with all Conan packages published by Bincrafters can be found in the Conan package directories in the following locations, relative to the Conan Cache root (`~/.conan` by default):
+The following command both runs all the steps of the conan file, and publishes the package to the local system cache.  This includes downloading dependencies from "build_requires" and "requires" , and then running the build() method.
 
-### License(s) for packaged software:
+    $ conan create bincraters/testing
 
-    https://github.com/mongodb/mongo-cxx-driver/blob/master/LICENSE
 
-### License for Bincrafters recipe:
+### Available Options
+| Option        | Default | Possible Values  |
+| ------------- |:----------------- |:------------:|
+| shared      | False |  [True, False] |
 
-    https://github.com/bincrafters/conan-mongocxx/blob/testing/1.9.4/LICENSE
+## Add Remote
+
+    $ conan remote add bincraters "https://api.bintray.com/conan/bincraters/public-conan"
+
+## Upload
+
+    $ conan upload mongo-cxx-driver/3.2.0@bincraters/testing --all -r bincraters
+
+
+## Conan Recipe License
+
+NOTE: The conan recipe license applies only to the files of this recipe, which can be used to build and package mongo-cxx-driver.
+It does *not* in any way apply or is related to the actual software being packaged.
+
+[MIT](git@github.com:bincrafters/conan-mongo-cxx-driver.git/blob/testing/3.2.0/LICENSE)
