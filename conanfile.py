@@ -9,7 +9,7 @@ import re
 class MongoCxxConan(ConanFile):
     name = "mongo-cxx-driver"
     version = "3.2.0"
-    url = "http://github.com/bincrafters/conan-mongocxx"
+    url = "http://github.com/bincrafters/conan-mongo-cxx-driver"
     description = "C++ Driver for MongoDB"
     license = "https://github.com/mongodb/mongo-cxx-driver/blob/{0}/LICENSE".format(version)
     settings =  "os", "compiler", "arch", "build_type"
