@@ -1,6 +1,6 @@
 [![Download](https://api.bintray.com/packages/bincraters/public-conan/mongo-cxx-driver%3Abincraters/images/download.svg) ](https://bintray.com/bincraters/public-conan/mongo-cxx-driver%3Abincraters/_latestVersion)
-[![Build Status](https://travis-ci.org/bincraters/conan-mongo-cxx-driver.svg?branch=testing%2F3.2.0)](https://travis-ci.org/bincraters/conan-mongo-cxx-driver)
-[![Build status](https://ci.appveyor.com/api/projects/status/github/bincraters/conan-mongo-cxx-driver?branch=testing%2F3.2.0&svg=true)](https://ci.appveyor.com/project/bincraters/conan-mongo-cxx-driver)
+[![Build Status](https://travis-ci.org/bincraters/conan-mongo-cxx-driver.svg?branch=stable%2F3.2.0)](https://travis-ci.org/bincraters/conan-mongo-cxx-driver)
+[![Build status](https://ci.appveyor.com/api/projects/status/github/bincraters/conan-mongo-cxx-driver?branch=stable%2F3.2.0&svg=true)](https://ci.appveyor.com/project/bincraters/conan-mongo-cxx-driver)
 
 [Conan.io](https://conan.io) package recipe for *mongo-cxx-driver*.
 
@@ -12,14 +12,14 @@ The packages generated with this **conanfile** can be found on [Bintray](https:/
 
 ### Basic setup
 
-    $ conan install mongo-cxx-driver/3.2.0@bincraters/testing
+    $ conan install mongo-cxx-driver/3.2.0@bincraters/stable
 
 ### Project setup
 
 If you handle multiple dependencies in your project is better to add a *conanfile.txt*
 
     [requires]
-    mongo-cxx-driver/3.2.0@bincraters/testing
+    mongo-cxx-driver/3.2.0@bincraters/stable
 
     [generators]
     cmake
@@ -38,7 +38,7 @@ The example below shows the commands used to publish to bincraters conan reposit
 
 The following command both runs all the steps of the conan file, and publishes the package to the local system cache.  This includes downloading dependencies from "build_requires" and "requires" , and then running the build() method.
 
-    $ conan create bincraters/testing
+    $ conan create bincraters/stable
 
 
 ### Available Options
@@ -52,7 +52,7 @@ The following command both runs all the steps of the conan file, and publishes t
 
 ## Upload
 
-    $ conan upload mongo-cxx-driver/3.2.0@bincraters/testing --all -r bincraters
+    $ conan upload mongo-cxx-driver/3.2.0@bincraters/stable --all -r bincraters
 
 
 ## Conan Recipe License
@@ -60,4 +60,4 @@ The following command both runs all the steps of the conan file, and publishes t
 NOTE: The conan recipe license applies only to the files of this recipe, which can be used to build and package mongo-cxx-driver.
 It does *not* in any way apply or is related to the actual software being packaged.
 
-[MIT](git@github.com:bincrafters/conan-mongo-cxx-driver.git/blob/testing/3.2.0/LICENSE)
+[MIT](git@github.com:bincrafters/conan-mongo-cxx-driver.git/blob/stable/3.2.0/LICENSE)
