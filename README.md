@@ -1,25 +1,25 @@
-[![Download](https://api.bintray.com/packages/bincraters/public-conan/mongo-cxx-driver%3Abincraters/images/download.svg) ](https://bintray.com/bincraters/public-conan/mongo-cxx-driver%3Abincraters/_latestVersion)
-[![Build Status](https://travis-ci.org/bincraters/conan-mongo-cxx-driver.svg?branch=stable%2F3.2.0)](https://travis-ci.org/bincraters/conan-mongo-cxx-driver)
-[![Build status](https://ci.appveyor.com/api/projects/status/github/bincraters/conan-mongo-cxx-driver?branch=stable%2F3.2.0&svg=true)](https://ci.appveyor.com/project/bincraters/conan-mongo-cxx-driver)
+[![Download](https://api.bintray.com/packages/bincrafters/public-conan/mongo-cxx-driver%3Abincrafters/images/download.svg) ](https://bintray.com/bincrafters/public-conan/mongo-cxx-driver%3Abincrafters/_latestVersion)
+[![Build Status](https://travis-ci.org/bincrafters/conan-mongo-cxx-driver.svg?branch=stable%2F3.2.0)](https://travis-ci.org/bincrafters/conan-mongo-cxx-driver)
+[![Build status](https://ci.appveyor.com/api/projects/status/github/bincrafters/conan-mongo-cxx-driver?branch=stable%2F3.2.0&svg=true)](https://ci.appveyor.com/project/bincrafters/conan-mongo-cxx-driver)
 
 [Conan.io](https://conan.io) package recipe for *mongo-cxx-driver*.
 
 C++ Driver for MongoDB
 
-The packages generated with this **conanfile** can be found on [Bintray](https://bintray.com/bincraters/public-conan/mongo-cxx-driver%3Abincraters).
+The packages generated with this **conanfile** can be found on [Bintray](https://bintray.com/bincrafters/public-conan/mongo-cxx-driver%3Abincrafters).
 
 ## For Users: Use this package
 
 ### Basic setup
 
-    $ conan install mongo-cxx-driver/3.2.0@bincraters/stable
+    $ conan install mongo-cxx-driver/3.2.0@bincrafters/stable
 
 ### Project setup
 
 If you handle multiple dependencies in your project is better to add a *conanfile.txt*
 
     [requires]
-    mongo-cxx-driver/3.2.0@bincraters/stable
+    mongo-cxx-driver/3.2.0@bincrafters/stable
 
     [generators]
     cmake
@@ -32,13 +32,13 @@ Note: It is recommended that you run conan install from a build directory and no
 
 ## For Packagers: Publish this Package
 
-The example below shows the commands used to publish to bincraters conan repository. To publish to your own conan respository (for example, after forking this git repository), you will need to change the commands below accordingly.
+The example below shows the commands used to publish to bincrafters conan repository. To publish to your own conan respository (for example, after forking this git repository), you will need to change the commands below accordingly.
 
 ## Build and package
 
 The following command both runs all the steps of the conan file, and publishes the package to the local system cache.  This includes downloading dependencies from "build_requires" and "requires" , and then running the build() method.
 
-    $ conan create bincraters/stable
+    $ conan create bincrafters/stable
 
 
 ### Available Options
@@ -48,11 +48,11 @@ The following command both runs all the steps of the conan file, and publishes t
 
 ## Add Remote
 
-    $ conan remote add bincraters "https://api.bintray.com/conan/bincraters/public-conan"
+    $ conan remote add bincrafters "https://api.bintray.com/conan/bincrafters/public-conan"
 
 ## Upload
 
-    $ conan upload mongo-cxx-driver/3.2.0@bincraters/stable --all -r bincraters
+    $ conan upload mongo-cxx-driver/3.2.0@bincrafters/stable --all -r bincrafters
 
 
 ## Conan Recipe License
