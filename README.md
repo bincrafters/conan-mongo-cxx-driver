@@ -1,6 +1,6 @@
 [![Download](https://api.bintray.com/packages/bincrafters/public-conan/mongo-cxx-driver%3Abincrafters/images/download.svg) ](https://bintray.com/bincrafters/public-conan/mongo-cxx-driver%3Abincrafters/_latestVersion)
-[![Build Status](https://travis-ci.org/bincrafters/conan-mongo-cxx-driver.svg?branch=stable%2F3.2.0)](https://travis-ci.org/bincrafters/conan-mongo-cxx-driver)
-[![Build status](https://ci.appveyor.com/api/projects/status/github/bincrafters/conan-mongo-cxx-driver?branch=stable%2F3.2.0&svg=true)](https://ci.appveyor.com/project/bincrafters/conan-mongo-cxx-driver)
+[![Build Status](https://travis-ci.org/bincrafters/conan-mongo-cxx-driver.svg?branch=stable%2F3.3.0)](https://travis-ci.org/bincrafters/conan-mongo-cxx-driver)
+[![Build status](https://ci.appveyor.com/api/projects/status/github/bincrafters/conan-mongo-cxx-driver?branch=stable%2F3.3.0&svg=true)](https://ci.appveyor.com/project/bincrafters/conan-mongo-cxx-driver)
 
 [Conan.io](https://conan.io) package recipe for *mongo-cxx-driver*.
 
@@ -12,14 +12,14 @@ The packages generated with this **conanfile** can be found on [Bintray](https:/
 
 ### Basic setup
 
-    $ conan install mongo-cxx-driver/3.2.0@bincrafters/stable
+    $ conan install mongo-cxx-driver/3.3.0@bincrafters/stable
 
 ### Project setup
 
 If you handle multiple dependencies in your project is better to add a *conanfile.txt*
 
     [requires]
-    mongo-cxx-driver/3.2.0@bincrafters/stable
+    mongo-cxx-driver/3.3.0@bincrafters/stable
 
     [generators]
     cmake
@@ -52,7 +52,7 @@ The following command both runs all the steps of the conan file, and publishes t
 
 ## Upload
 
-    $ conan upload mongo-cxx-driver/3.2.0@bincrafters/stable --all -r bincrafters
+    $ conan upload mongo-cxx-driver/3.3.0@bincrafters/stable --all -r bincrafters
 
 
 ## Conan Recipe License
