@@ -12,7 +12,7 @@ class MongoCxxConan(ConanFile):
     description = "C++ Driver for MongoDB"
     license = "https://github.com/mongodb/mongo-cxx-driver/blob/r{0}/LICENSE".format(version)
     settings = "os", "compiler", "arch", "build_type"
-    requires = 'mongo-c-driver/1.11.0@bisect/stable'
+    requires = 'mongo-c-driver/1.11.0@bincrafters/stable'
     options = {"shared": [True, False], "fPIC": [True, False], "use_17_standard": [True, False]}
     default_options = "shared=True", "fPIC=True", "use_17_standard=False"
     exports_sources = ["CMakeLists.txt", "diff.patch"]
