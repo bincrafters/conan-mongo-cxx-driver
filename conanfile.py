@@ -15,15 +15,12 @@ class MongoCxxConan(ConanFile):
     settings =  "os", "compiler", "arch", "build_type"
     options = {"shared": [True, False]}
     default_options = "shared=False"
-    requires = 'mongo-c-driver/1.11.0@bincrafters/stable'
+    requires = ("mongo-c-driver/1.11.0@bincrafters/stable",
+        "boost_system/1.67.0@bincrafters/stable",
+        "boost_utility/1.67.0@bincrafters/stable",
+        "boost_smart_ptr/1.67.0@bincrafters/stable",
+        "boost_optional/1.67.0@bincrafters/stable")
     generators = "cmake"
-
-    def requirements(self):
-        if self.settings.compiler == 'Visual Studio':
-            self.requires("boost_system/1.67.0@bincrafters/stable")
-            self.requires("boost_utility/1.67.0@bincrafters/stable")
-            self.requires("boost_smart_ptr/1.67.0@bincrafters/stable")
-            self.requires("boost_optional/1.67.0@bincrafters/stable")
 
     def source(self):
         tools.get("https://github.com/mongodb/mongo-cxx-driver/archive/r{0}.tar.gz".format(self.version))
@@ -43,14 +40,7 @@ class MongoCxxConan(ConanFile):
         content = tools.load(cmake_file)
 
         cmake = CMake(self)
-        if self.settings.compiler == 'Visual Studio':
-            cmake.definitions["BSONCXX_POLY_USE_BOOST"] = 1 # required for Windows.
-        else:
-            cmake.definitions["BSONCXX_POLY_USE_MNMLSTC"] = 1
-            cmake.definitions["BSONCXX_POLY_USE_STD_EXPERIMENTAL"] = 0
-            cmake.definitions["BSONCXX_POLY_USE_BOOST"] = 0
-            cmake.definitions["BSONCXX_POLY_USE_STD"] = 0
-
+        cmake.definitions["BSONCXX_POLY_USE_BOOST"] = 1
         cmake.configure(source_dir="sources")
         cmake.build()
 
@@ -66,7 +56,6 @@ class MongoCxxConan(ConanFile):
         self.copy(pattern="*.hpp", dst="include/mongocxx", src="sources/src/mongocxx", keep_path=True)
         self.copy(pattern="*.hpp", dst="include/bsoncxx", src="src/bsoncxx", keep_path=True)
         self.copy(pattern="*.hpp", dst="include/mongocxx", src="src/mongocxx", keep_path=True)
-        self.copy(pattern="*.hpp", dst="include/bsoncxx/third_party/mnmlstc/core", src="src/bsoncxx/third_party/EP_mnmlstc_core-prefix/src/EP_mnmlstc_core/include/core", keep_path=False)
         # self.copy(pattern="*.dll", dst="bin", src="bin", keep_path=False)
 
         # self.purge("lib", "lib.*testing.*".format(self.version))
@@ -105,6 +94,5 @@ class MongoCxxConan(ConanFile):
 
     def package_info(self):
         self.cpp_info.libs = ['mongocxx', 'bsoncxx']
-        self.cpp_info.includedirs.append('include/bsoncxx/third_party/mnmlstc')
 
 
