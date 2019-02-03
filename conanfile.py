@@ -89,6 +89,14 @@ class MongoCxxConan(ConanFile):
             os.rename("lib/libbsoncxx-static.lib", "lib/libbsoncxx.lib")
         except:
             pass
+        try:
+            os.rename("lib/mongocxx-static.lib", "lib/mongocxx.lib")
+        except:
+            pass
+        try:
+            os.rename("lib/bsoncxx-static.lib", "lib/bsoncxx.lib")
+        except:
+            pass
         self.copy(pattern="lib*cxx.lib", dst="lib", src="lib", keep_path=False)
         self.copy(pattern="lib*cxx.a", dst="lib", src="lib", keep_path=False)
         self.copy(pattern="lib*cxx.so*", dst="lib", src="lib", keep_path=False)
