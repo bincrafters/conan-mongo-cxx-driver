@@ -18,6 +18,13 @@ class MongoCxxConan(ConanFile):
     requires = 'mongo-c-driver/1.11.0@bincrafters/stable'
     generators = "cmake"
 
+    def requirements(self):
+        if self.settings.compiler == 'Visual Studio':
+            self.requires("boost_system/1.67.0@bincrafters/stable")
+            self.requires("boost_utility/1.67.0@bincrafters/stable")
+            self.requires("boost_smart_ptr/1.67.0@bincrafters/stable")
+            self.requires("boost_optional/1.67.0@bincrafters/stable")
+
     def source(self):
         tools.get("https://github.com/mongodb/mongo-cxx-driver/archive/r{0}.tar.gz".format(self.version))
         extracted_dir = "mongo-cxx-driver-r{0}".format(self.version)
@@ -27,35 +34,9 @@ class MongoCxxConan(ConanFile):
         conan_magic_lines='''project(MONGO_CXX_DRIVER LANGUAGES CXX)
         include(../conanbuildinfo.cmake)
         conan_basic_setup()
-        # include(CheckCXXCompilerFlag)
-        # check_cxx_compiler_flag(-std=c++17 HAVE_FLAG_STD_CXX17)
-        # if(HAVE_FLAG_STD_CXX17)
-        #     message(STATUS USING C++17!)
-        #     set(CMAKE_CXX_STANDARD 17)
-        #     set(BSONCXX_POLY_USE_MNMLSTC 0)
-        #     set(BSONCXX_POLY_USE_STD_EXPERIMENTAL 0)
-        #     set(BSONCXX_POLY_USE_BOOST 0)
-        #     set(BSONCXX_POLY_USE_STD 1)
-        # else()
-        #     check_cxx_compiler_flag(-std=c++14 HAVE_FLAG_STD_CXX14)
-        #     if(HAVE_FLAG_STD_CXX14)
-        #         message(STATUS USING C++14!)
-        #         set(CMAKE_CXX_STANDARD 14)
-        #         set(BSONCXX_POLY_USE_MNMLSTC 0)
-        #         set(BSONCXX_POLY_USE_STD_EXPERIMENTAL 1)
-        #         set(BSONCXX_POLY_USE_BOOST 0)
-        #         set(BSONCXX_POLY_USE_STD 0)
-        #     else()
-        #         message(FATAL_ERROR "MongoCXX requires at least C++14")
-        #     endif()
-        # endif()
-        # set(CMAKE_CXX_STANDARD_REQUIRED ON)
-        # set(CMAKE_CXX_EXTENSIONS OFF)
-        set(BSONCXX_POLY_USE_MNMLSTC 1)
-        set(BSONCXX_POLY_USE_STD_EXPERIMENTAL 0)
-        set(BSONCXX_POLY_USE_BOOST 0)
-        set(BSONCXX_POLY_USE_STD 0)
         '''
+        if self.settings.compiler == 'Visual Studio':
+                conan_magic_lines += "add_definitions(-D_ENABLE_EXTENDED_ALIGNED_STORAGE)"
         
         cmake_file = "sources/CMakeLists.txt"
         tools.replace_in_file(cmake_file, "project(MONGO_CXX_DRIVER LANGUAGES CXX)", conan_magic_lines)
@@ -64,6 +45,12 @@ class MongoCxxConan(ConanFile):
         cmake = CMake(self)
         if self.settings.compiler == 'Visual Studio':
             cmake.definitions["BSONCXX_POLY_USE_BOOST"] = 1 # required for Windows.
+        else:
+            cmake.definitions["BSONCXX_POLY_USE_MNMLSTC"] = 1
+            cmake.definitions["BSONCXX_POLY_USE_STD_EXPERIMENTAL"] = 0
+            cmake.definitions["BSONCXX_POLY_USE_BOOST"] = 0
+            cmake.definitions["BSONCXX_POLY_USE_STD"] = 0
+
         cmake.configure(source_dir="sources")
         cmake.build()
 
