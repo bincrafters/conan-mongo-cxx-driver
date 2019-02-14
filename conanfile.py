@@ -56,11 +56,7 @@ class MongoCxxConan(ConanFile):
         self.copy(pattern="*.hpp", dst="include/mongocxx", src="sources/src/mongocxx", keep_path=True)
         self.copy(pattern="*.hpp", dst="include/bsoncxx", src="src/bsoncxx", keep_path=True)
         self.copy(pattern="*.hpp", dst="include/mongocxx", src="src/mongocxx", keep_path=True)
-        # self.copy(pattern="*.dll", dst="bin", src="bin", keep_path=False)
-
-        # self.purge("lib", "lib.*testing.*".format(self.version))
-        # self.purge("lib", "lib.*mocked.*".format(self.version))
-        # # self.purge("lib", "lib.*_noabi.*".format(self.version))
+        self.copy(pattern="*.dll", dst="bin", src="bin", keep_path=False)
 
         try:
             os.rename("lib/libmongocxx-static.a", "lib/libmongocxx.a")
