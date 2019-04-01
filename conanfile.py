@@ -34,7 +34,9 @@ class MongoCxxConan(ConanFile):
         '''
         if self.settings.compiler == 'Visual Studio':
                 conan_magic_lines += "add_definitions(-D_ENABLE_EXTENDED_ALIGNED_STORAGE)"
-        
+        elif str(self.settings.compiler) in ["gcc", "clang"]:
+                conan_magic_lines += "add_definitions(-Wno-deprecated-declarations)"
+
         cmake_file = "sources/CMakeLists.txt"
         tools.replace_in_file(cmake_file, "project(MONGO_CXX_DRIVER LANGUAGES CXX)", conan_magic_lines)
         content = tools.load(cmake_file)
