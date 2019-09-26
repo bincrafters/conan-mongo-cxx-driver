@@ -14,7 +14,7 @@ class MongoCxxConan(ConanFile):
     license = "https://github.com/mongodb/mongo-cxx-driver/blob/{0}/LICENSE".format(version)
     settings =  "os", "compiler", "arch", "build_type"
     options = {"shared": [True, False]}
-    default_options = "shared=False"
+    default_options = {'shared': 'False'}
     requires = 'mongo-c-driver/[~=1.9]@bincrafters/stable'
     generators = "cmake"
 
